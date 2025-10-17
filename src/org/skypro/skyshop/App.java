@@ -27,5 +27,11 @@ public class App {
         productBasket.cleaningBascet();
         System.out.println(productBasket);
 
+        productBasket.printBascet();
+        v = productBasket.generalPraisBascet();
+        System.out.println(v);
+        b = productBasket.searchByNameProductInBasket("Nog");
+        System.out.println(b);
+
     }
 }
