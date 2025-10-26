@@ -28,6 +28,11 @@ public class DiscountedProduct extends Product {
     }
 
     @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
+    @Override
     public Integer getPrice() {
         Integer priceProduct = getBasicPrice() - ((getBasicPrice() / 100) * getDiscount());
         return priceProduct;

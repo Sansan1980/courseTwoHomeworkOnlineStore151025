@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class ProductBasket {
     private Product[] productBaskets = new Product[5];
     public static int counter = 0;
+    public static int isSpecialCounter = 0;
 
     public void addProduct(Product product) {
         if (counter < 5) {
@@ -32,7 +33,12 @@ public class ProductBasket {
     public void printBascet() {
         int a = 0;
         for (Product product : productBaskets) {
+
             if (product != null) {
+                if (product.isSpecial() != false) {
+                    isSpecialCounter++;
+                }
+
                 System.out.println(product);
             } else {
                 a = a + 1;
@@ -42,7 +48,7 @@ public class ProductBasket {
             }
         }
         System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
-
+        System.out.println("Специальных товаров: " + isSpecialCounter);
     }
 
     public Boolean searchByNameProductInBasket(String nameProduct) {
