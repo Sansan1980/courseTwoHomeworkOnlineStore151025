@@ -1,6 +1,7 @@
 package org.skypro.skyshop.bascet;
 
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
 
 import java.util.Arrays;
 
@@ -22,7 +23,7 @@ public class ProductBasket {
         Integer summ = 0;
         for (Product p : productBaskets) {
             if (p != null) {
-                summ = summ + p.getPriceProduct();
+                summ = summ + p.getPraisProduct();
             }
         }
         return summ;
