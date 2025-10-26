@@ -12,10 +12,11 @@ public abstract class Product {
         return nameProduct;
     }
 
-    public abstract Integer getPraisProduct();
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
 
-
-
+    public abstract Integer getPrice();
 
 }
 

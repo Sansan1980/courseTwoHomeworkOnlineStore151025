@@ -23,7 +23,7 @@ public class ProductBasket {
         Integer summ = 0;
         for (Product p : productBaskets) {
             if (p != null) {
-                summ = summ + p.getPraisProduct();
+                summ = summ + p.getPrice();
             }
         }
         return summ;
@@ -42,6 +42,7 @@ public class ProductBasket {
             }
         }
         System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
+
     }
 
     public Boolean searchByNameProductInBasket(String nameProduct) {
