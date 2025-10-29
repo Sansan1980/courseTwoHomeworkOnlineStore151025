@@ -11,7 +11,7 @@ public class App {
         Product hleb = new SimpleProduct("Hleb", 2);
         Product stul = new DiscountedProduct(("Stul"), 6000,50);
         Product apple = new FixPriceProduct("Apple");
-        Product tetrad = new SimpleProduct("Tetrad", 7);
+        Product tetrad = new FixPriceProduct("Tetrad");
         Product orang = new SimpleProduct("Orang", 1);
         Product lampa = new SimpleProduct("Lampa", 2);
         ProductBasket productBasket = new ProductBasket();

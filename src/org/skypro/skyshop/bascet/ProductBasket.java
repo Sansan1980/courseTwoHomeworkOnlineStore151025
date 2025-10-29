@@ -64,6 +64,7 @@ public class ProductBasket {
     public void cleaningBascet() {
         for (int i = 0; i < productBaskets.length; i++) {
             productBaskets[i] = null;
+            isSpecialCounter = 0;
         }
     }
 
