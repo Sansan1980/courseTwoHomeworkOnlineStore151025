@@ -23,4 +23,19 @@ public class FixPriceProduct extends Product {
         return "Имя продукта c фиксированной ценой : " + getNameProduct() +
                 "Фиксированная цена - " + getPrice();
     }
+    @Override
+    public String searchTerm() {
+        return getNameProduct();
+    }
+
+    @Override
+    public String returnsNameTipContent() {
+        return "FIX_PRICE_PRODUCT";
+    }
+
+    @Override
+    public String getStringRepresentation() {// почему-то ошибка когда default
+        return "Имя объекта - " + getNameProduct() +
+                "Тип объекта - " + returnsNameTipContent();
+    }
 }

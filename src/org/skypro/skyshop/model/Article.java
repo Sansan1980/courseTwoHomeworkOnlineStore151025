@@ -14,6 +14,7 @@ public class Article implements Searchable {
         this.textArticle = textArticle;
     }
 
+
     public String getNameArticle() {
         return nameArticle;
     }
@@ -22,28 +23,22 @@ public class Article implements Searchable {
         return textArticle;
     }
 
-    //Метод получения search term (термина поиска) — метод,
-// который будет возвращать текст, по которому мы будем искать.
+    @Override
     public String searchTerm() {
-        return textArticle;
+        return getNameArticle()+getTextArticle();
     }
 
-    //Метод получения типа контента, который мы нашли.
-// Метод должен возвращать строку с названием типа контента.
+    @Override
     public String returnsNameTipContent() {
-        return "Article";
+        return "ARTICLE";
     }
 
-    //Метод получения имени Searchable-объекта.
-
+    @Override
     public String getStringRepresentation() {// почему-то ошибка когда default
         return "Имя объекта - " + getNameArticle() +
                 "Тип объекта - " + returnsNameTipContent();
     }
-    //Добавьте в класс метод toString
-    //, который будет преобразовывать статью в строку такого вида:
-    //Название статьи
-    //Текст статьи
+
     @Override
     public String toString() {
         return "Название статьи - " + getNameArticle() +

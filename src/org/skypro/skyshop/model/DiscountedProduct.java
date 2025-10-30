@@ -42,4 +42,19 @@ public class DiscountedProduct extends Product {
                 " , Скидка - " + getDiscount() + "  процентов" +
                 " Стоимость продукта - " + getPrice();
     }
+    @Override
+    public String searchTerm() {
+        return getNameProduct();
+    }
+
+    @Override
+    public String returnsNameTipContent() {
+        return "DISCOUNT_PRODUCT";
+    }
+
+    @Override
+    public String getStringRepresentation() {// почему-то ошибка когда default
+        return "Имя объекта - " + getNameProduct() +
+                "Тип объекта - " + returnsNameTipContent();
+    }
 }
