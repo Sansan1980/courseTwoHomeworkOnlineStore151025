@@ -3,10 +3,8 @@ package org.skypro.skyshop.model;
 import org.skypro.skyshop.service.Searchable;
 
 public class Article implements Searchable {
-    //    название статьи в виде строки,
     private String nameArticle;
 
-    //текст статьи в виде строки.
     private String textArticle;
 
     public Article(String nameArticle, String textArticle) {
@@ -36,7 +34,7 @@ public class Article implements Searchable {
     @Override
     public String getStringRepresentation() {// почему-то ошибка когда default
         return "Имя объекта - " + getNameArticle() +
-                "Тип объекта - " + returnsNameTipContent();
+                ", Тип объекта - " + returnsNameTipContent();
     }
 
     @Override

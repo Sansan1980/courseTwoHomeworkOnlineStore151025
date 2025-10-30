@@ -16,7 +16,7 @@ public abstract class Product implements Searchable {
     }
 
 
-    public abstract Integer getPrice();
+    public abstract int getPrice();
 
 }
 

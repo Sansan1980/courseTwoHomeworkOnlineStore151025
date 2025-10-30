@@ -1,9 +1,9 @@
 package org.skypro.skyshop.model;
 
 public class SimpleProduct extends Product {
-    private Integer praisProduct;
+    private int praisProduct;
 
-    public SimpleProduct(String name, Integer praisProduct) {
+    public SimpleProduct(String name, int praisProduct) {
         super(name);
         this.praisProduct = praisProduct;
     }
@@ -14,14 +14,14 @@ public class SimpleProduct extends Product {
     }
 
     @Override
-    public Integer getPrice() {
+    public int getPrice() {
         return praisProduct;
     }
 
     @Override
     public String toString() {
         return "Имя продукта - " + getNameProduct() +
-                "Его стоимость - " + getPrice();
+                ", Его стоимость - " + getPrice();
     }
 
     @Override

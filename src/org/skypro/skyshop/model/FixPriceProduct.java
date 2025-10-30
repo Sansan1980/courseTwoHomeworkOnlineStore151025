@@ -1,7 +1,7 @@
 package org.skypro.skyshop.model;
 
 public class FixPriceProduct extends Product {
-    private static final Integer FIX_PRICE_PRODUCT = 50; // эх были времена!;
+    private static final int FIX_PRICE_PRODUCT = 50; // эх были времена!;
 
     public FixPriceProduct(String name) {
         super(name);
@@ -13,7 +13,7 @@ public class FixPriceProduct extends Product {
     }
 
     @Override
-    public Integer getPrice() {
+    public int getPrice() {
         return FIX_PRICE_PRODUCT;
     }
 
@@ -21,7 +21,7 @@ public class FixPriceProduct extends Product {
     public String toString() {
         //имя продукта c фиксированной ценой>: Фиксированная цена <значение константы фиксированной цены>
         return "Имя продукта c фиксированной ценой : " + getNameProduct() +
-                "Фиксированная цена - " + getPrice();
+                ", Фиксированная цена - " + getPrice();
     }
     @Override
     public String searchTerm() {
@@ -36,6 +36,6 @@ public class FixPriceProduct extends Product {
     @Override
     public String getStringRepresentation() {// почему-то ошибка когда default
         return "Имя объекта - " + getNameProduct() +
-                "Тип объекта - " + returnsNameTipContent();
+                ", Тип объекта - " + returnsNameTipContent();
     }
 }

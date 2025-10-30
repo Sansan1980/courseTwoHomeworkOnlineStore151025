@@ -19,8 +19,8 @@ public class ProductBasket {
         }
     }
 
-    public Integer generalPraisBascet() {
-        Integer summ = 0;
+    public int generalPraisBascet() {
+        int summ = 0;
         for (Product p : productBaskets) {
             if (p != null) {
                 summ = summ + p.getPrice();

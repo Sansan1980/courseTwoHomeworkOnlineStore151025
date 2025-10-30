@@ -1,25 +1,25 @@
 package org.skypro.skyshop.model;
 
 public class DiscountedProduct extends Product {
-    private Integer basicPrice;
-    private Integer discount;
+    private int basicPrice;
+    private int discount;
 
-    public DiscountedProduct(String name, Integer basicPrice, Integer discount) {
+    public DiscountedProduct(String name, int basicPrice, int discount) {
         super(name);
         this.basicPrice = basicPrice;
         this.discount = discount;
     }
 
 
-    public Integer getBasicPrice() {
+    public int getBasicPrice() {
         return basicPrice;
     }
 
-    public void setBasicPrice(Integer basicPrice) {
+    public void setBasicPrice(int basicPrice) {
         this.basicPrice = basicPrice;
     }
 
-    public Integer getDiscount() {
+    public int getDiscount() {
         return discount;
     }
 
@@ -30,8 +30,8 @@ public class DiscountedProduct extends Product {
     }
 
     @Override
-    public Integer getPrice() {
-        Integer priceProduct = getBasicPrice() - ((getBasicPrice() / 100) * getDiscount());
+    public int getPrice() {
+        int priceProduct = getBasicPrice() - ((getBasicPrice() / 100) * getDiscount());
         return priceProduct;
     }
 
@@ -40,7 +40,7 @@ public class DiscountedProduct extends Product {
         return "Имя продукта со скидкой - " + getNameProduct() +
                 " , Базовая цена - " + getBasicPrice() +
                 " , Скидка - " + getDiscount() + "  процентов" +
-                " Стоимость продукта - " + getPrice();
+                ", Стоимость продукта - " + getPrice();
     }
     @Override
     public String searchTerm() {
@@ -55,6 +55,6 @@ public class DiscountedProduct extends Product {
     @Override
     public String getStringRepresentation() {// почему-то ошибка когда default
         return "Имя объекта - " + getNameProduct() +
-                "Тип объекта - " + returnsNameTipContent();
+                ", Тип объекта - " + returnsNameTipContent();
     }
 }
