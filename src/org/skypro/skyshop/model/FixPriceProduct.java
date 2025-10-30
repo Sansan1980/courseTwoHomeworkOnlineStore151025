@@ -1,4 +1,4 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.model;
 
 public class FixPriceProduct extends Product {
     private static final Integer FIX_PRICE_PRODUCT = 50; // эх были времена!;

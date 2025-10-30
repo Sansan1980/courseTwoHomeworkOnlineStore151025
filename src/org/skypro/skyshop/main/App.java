@@ -1,10 +1,10 @@
 package org.skypro.skyshop.main;
 
-import org.skypro.skyshop.bascet.ProductBasket;
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
-import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.service.ProductBasket;
+import org.skypro.skyshop.model.DiscountedProduct;
+import org.skypro.skyshop.model.FixPriceProduct;
+import org.skypro.skyshop.model.Product;
+import org.skypro.skyshop.model.SimpleProduct;
 
 public class App {
     public static void main(String[] args) {

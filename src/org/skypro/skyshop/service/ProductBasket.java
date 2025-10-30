@@ -1,7 +1,6 @@
-package org.skypro.skyshop.bascet;
+package org.skypro.skyshop.service;
 
-import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.model.Product;
 
 import java.util.Arrays;
 

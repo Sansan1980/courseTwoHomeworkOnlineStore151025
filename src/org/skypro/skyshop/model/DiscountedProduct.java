@@ -1,4 +1,4 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.model;
 
 public class DiscountedProduct extends Product {
     private Integer basicPrice;
@@ -23,9 +23,6 @@ public class DiscountedProduct extends Product {
         return discount;
     }
 
-    public void setDiscountPrice(Integer discount) {
-        this.discount = discount;
-    }
 
     @Override
     public boolean isSpecial() {
