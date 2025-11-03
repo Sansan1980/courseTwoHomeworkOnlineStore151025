@@ -10,7 +10,7 @@ public class ProductBasket {
     public static int isSpecialCounter = 0;
 
     public void addProduct(Product product) {
-        if (counter < 5) {
+        if (counter < productBaskets.length-1) {
             productBaskets[counter] = product;
             counter = counter + 1;
 

@@ -18,7 +18,7 @@ public class App {
         Product orang = new SimpleProduct("апельсин", 1);
         Product lampa = new SimpleProduct("лампа", 2);
 
-        SerchEngine serchEngine = new SerchEngine(8);
+        SerchEngine serchEngine = new SerchEngine(7);
         serchEngine.add(articleHleb);
         serchEngine.add(articleStul);
         serchEngine.add(hleb);
@@ -42,7 +42,7 @@ public class App {
         productBasket.printBascet();
         Integer v = productBasket.generalPraisBascet();
         System.out.println(v);
-        Boolean b = productBasket.searchByNameProductInBasket("Tetrad");
+        Boolean b = productBasket.searchByNameProductInBasket("тетрадь");
         System.out.println(b);
         productBasket.cleaningBascet();
         System.out.println(productBasket);
