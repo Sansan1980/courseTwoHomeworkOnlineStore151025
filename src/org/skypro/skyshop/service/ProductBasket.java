@@ -1,7 +1,6 @@
-package org.skypro.skyshop.bascet;
+package org.skypro.skyshop.service;
 
-import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.model.Product;
 
 import java.util.Arrays;
 
@@ -11,7 +10,7 @@ public class ProductBasket {
     public static int isSpecialCounter = 0;
 
     public void addProduct(Product product) {
-        if (counter < 5) {
+        if (counter < productBaskets.length-1) {
             productBaskets[counter] = product;
             counter = counter + 1;
 
@@ -20,8 +19,8 @@ public class ProductBasket {
         }
     }
 
-    public Integer generalPraisBascet() {
-        Integer summ = 0;
+    public int generalPraisBascet() {
+        int summ = 0;
         for (Product p : productBaskets) {
             if (p != null) {
                 summ = summ + p.getPrice();
