@@ -24,10 +24,7 @@ public class SimpleProduct extends Product {
                 ", Его стоимость - " + getPrice();
     }
 
-    @Override
-    public String searchTerm() {
-        return getNameProduct();
-    }
+
 
     @Override
     public String returnsNameTipContent() {
