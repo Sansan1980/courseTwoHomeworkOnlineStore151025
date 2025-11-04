@@ -18,6 +18,10 @@ public class App {
         Product orang = new SimpleProduct("апельсин", 1);
         Product lampa = new SimpleProduct("лампа", 2);
 
+        System.out.println("сеарчтерм");
+        System.out.println(stul.searchTerm());
+        System.out.println("///////");
+
         SerchEngine serchEngine = new SerchEngine(7);
         serchEngine.add(articleHleb);
         serchEngine.add(articleStul);
@@ -28,7 +32,7 @@ public class App {
         serchEngine.add(orang);
         serchEngine.add(lampa);
 
-        Searchable[] search = serchEngine.search("ь");
+        Searchable[] search = serchEngine.search("сани");
         System.out.println(Arrays.toString(search));
 
         ProductBasket productBasket = new ProductBasket();
@@ -38,6 +42,7 @@ public class App {
         productBasket.addProduct(tetrad);
         productBasket.addProduct(orang);
         productBasket.addProduct(lampa);
+
 
         productBasket.printBascet();
         Integer v = productBasket.generalPraisBascet();
