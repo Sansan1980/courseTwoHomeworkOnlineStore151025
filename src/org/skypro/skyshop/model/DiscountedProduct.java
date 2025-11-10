@@ -18,7 +18,7 @@ public class DiscountedProduct extends Product {
             System.out.println("Базовая цена указана неверно(меньше или равно нуль) =" + basicPrice);
         } catch (IllegalDiscountPriceArgumentException exception) {
             System.out.println("Дисконтная цена указана неверно (процент должен быть числом в диапазоне от\n" +
-                    "    0 до 100 включительно.)=" + discount);
+                    "    0 до 100 включительно.)= " + discount);
 
         }
         this.basicPrice = basicPrice;
