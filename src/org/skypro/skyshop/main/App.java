@@ -11,8 +11,8 @@ public class App {
     public static void main(String[] args) {
         Searchable articleHleb = new Article("Описание товара", "хлеб ручной работы");
         Article articleStul = new Article("Описание товара", "стул деревянный");
-        Product hleb = new SimpleProduct(("хлеб"), 50);
-        Product stul = new DiscountedProduct(("стул"), 6000, 50);
+        Product hleb = new SimpleProduct(("хлеб"), 0);
+        Product stul = new DiscountedProduct(("стул"), 6000, 101);
         Product apple = new FixPriceProduct("Apple");
         Product tetrad = new FixPriceProduct("тетрадь");
         Product orang = new SimpleProduct("апельсин", 1);

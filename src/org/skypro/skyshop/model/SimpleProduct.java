@@ -5,6 +5,13 @@ public class SimpleProduct extends Product {
 
     public SimpleProduct(String name, int praisProduct) {
         super(name);
+        try {
+            if (praisProduct <= 0) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Введена ошибочная цена - " + "'"+ praisProduct +"'" );
+        }
         this.praisProduct = praisProduct;
     }
 
@@ -23,7 +30,6 @@ public class SimpleProduct extends Product {
         return "Имя продукта - " + getNameProduct() +
                 ", Его стоимость - " + getPrice();
     }
-
 
 
     @Override

@@ -1,11 +1,31 @@
 package org.skypro.skyshop.model;
 
+import org.skypro.skyshop.exeption.IllegalBasicPriceArgumentException;
+import org.skypro.skyshop.exeption.IllegalDiscountPriceArgumentException;
+
 public class DiscountedProduct extends Product {
     private int basicPrice;
     private int discount;
 
+
     public DiscountedProduct(String name, int basicPrice, int discount) {
         super(name);
+        try {
+            if (basicPrice <= 0) {
+                throw new IllegalBasicPriceArgumentException();
+            }
+        } catch (IllegalBasicPriceArgumentException exception) {
+            System.out.println("Базовая цена указана неверно(меньше или равно нуль) =" + basicPrice);
+        }
+        try {
+            if (discount < 0 || discount > 100) {
+                throw new IllegalDiscountPriceArgumentException();
+            }
+        } catch (IllegalDiscountPriceArgumentException exception) {
+            System.out.println("Дисконтная цена указана неверно (процент должен быть числом в диапазоне от\n" +
+                    "    0 до 100 включительно.)= " + discount);
+
+        }
         this.basicPrice = basicPrice;
         this.discount = discount;
     }
