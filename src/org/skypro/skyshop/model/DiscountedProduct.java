@@ -1,7 +1,7 @@
 package org.skypro.skyshop.model;
 
-import org.skypro.skyshop.main.exeption.IllegalBasicPriceArgumentException;
-import org.skypro.skyshop.main.exeption.IllegalDiscountPriceArgumentException;
+import org.skypro.skyshop.exeption.IllegalBasicPriceArgumentException;
+import org.skypro.skyshop.exeption.IllegalDiscountPriceArgumentException;
 
 public class DiscountedProduct extends Product {
     private int basicPrice;
