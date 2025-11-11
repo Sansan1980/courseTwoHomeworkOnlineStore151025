@@ -7,13 +7,7 @@ public abstract class Product implements Searchable {
 
 
     public Product(String nameProduct) {
-        try {
-            if (nameProduct.isBlank() || nameProduct == null) {
-                throw new RuntimeException();
-            }
-        } catch (RuntimeException exception) {
-            System.out.println("nameProduct =  " + "'" + nameProduct + "'" + " -Введена пустая строка или содержит null");
-        }
+
         this.nameProduct = nameProduct;
 
     }
@@ -30,6 +24,12 @@ public abstract class Product implements Searchable {
 
 
     public abstract int getPrice();
+
+    public void chekNameProduct(String nameProduct) {
+            if (nameProduct.isBlank() || nameProduct == null) {
+                throw new RuntimeException();
+        }
+    }
 
 }
 
