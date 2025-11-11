@@ -2,7 +2,8 @@ package org.skypro.skyshop.exeption;
 
 public class IllegalBasicPriceArgumentException extends IllegalArgumentException {
 
-    public void IllegalArgumentException(String s) {
+    public  IllegalBasicPriceArgumentException(String message) {
+        super(message);
     }
 // реализуйте проверки базовой цены и процента скидки. Правила для базовой
 // цены — такие же, как для цены в классе

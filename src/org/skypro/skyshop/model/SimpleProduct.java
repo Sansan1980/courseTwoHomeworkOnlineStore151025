@@ -1,18 +1,14 @@
 package org.skypro.skyshop.model;
 
+import org.skypro.skyshop.exeption.IllegalSimpleProductPriceArgumentException;
+
 public class SimpleProduct extends Product {
     private int praisProduct;
 
-    public SimpleProduct(String name, int praisProduct) {
+    public SimpleProduct(String name, int priceProduct) throws IllegalArgumentException{
         super(name);
-        try {
-            if (praisProduct <= 0) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException exception) {
-            System.out.println("Введена ошибочная цена - " + "'"+ praisProduct +"'" );
-        }
-        this.praisProduct = praisProduct;
+        checSimpleProductPrice(priceProduct);
+        this.praisProduct = priceProduct;
     }
 
     @Override
@@ -43,4 +39,9 @@ public class SimpleProduct extends Product {
                 "Тип объекта - " + returnsNameTipContent();
     }
 
+    public void checSimpleProductPrice(int priceProduct) throws IllegalArgumentException{
+            if (praisProduct <= 0) {
+                throw new IllegalSimpleProductPriceArgumentException("Цена продукта неверна, цена должна быть строго больше ноля. ");
+            }
+    }
 }

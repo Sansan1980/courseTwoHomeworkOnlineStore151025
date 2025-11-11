@@ -1,6 +1,7 @@
 package org.skypro.skyshop.exeption;
 
 public class IllegalDiscountPriceArgumentException extends IllegalArgumentException {
-    public void IllegalArgumentException(String s) {
+    public  IllegalDiscountPriceArgumentException(String message) {
+        super(message);
     }
 }
