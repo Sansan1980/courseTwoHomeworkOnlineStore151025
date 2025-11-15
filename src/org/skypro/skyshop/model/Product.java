@@ -7,8 +7,8 @@ public abstract class Product implements Searchable {
     private String nameProduct;
 
 
-    public Product(String nameProduct) throws IllegalArgumentException{
-        chekNameProduct(nameProduct);
+    public Product(String nameProduct) throws IllegalProductNameArgumentException{
+       chekNameProduct(nameProduct);
         this.nameProduct = nameProduct;
 
     }
@@ -26,7 +26,7 @@ public abstract class Product implements Searchable {
 
     public abstract int getPrice();
 
-    public void chekNameProduct(String nameProduct) throws IllegalArgumentException{
+    public void chekNameProduct(String nameProduct) throws IllegalProductNameArgumentException{
             if (nameProduct.isBlank() || nameProduct == null) {
                 throw new IllegalProductNameArgumentException("Введенное имя isBlank или null");
         }
