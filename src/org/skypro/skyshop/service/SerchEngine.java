@@ -2,7 +2,7 @@ package org.skypro.skyshop.service;
 
 public class SerchEngine {
     private Searchable[] arr;
-    private static int counter;
+    private static int counterSearchEngine;
 
     public SerchEngine(int size) {
         this.arr = new Searchable[size];
@@ -27,13 +27,17 @@ public class SerchEngine {
     }
 
     public void add(Searchable value) {
-        if (counter <= arr.length - 1) {
-            arr[counter] = value;
-            counter++;
+        if (counterSearchEngine <= arr.length - 1) {
+            arr[counterSearchEngine] = value;
+            counterSearchEngine++;
             System.out.println(value);
         } else {
             System.out.println("SerchEngine.add - посиковый массив ,Searchable[] arr, переполнен нельзя дообавить продукт: - " + value);
         }
+    }
+
+    public Searchable searchPrecision(String search) {
+
     }
 
 }

@@ -6,13 +6,13 @@ import java.util.Arrays;
 
 public class ProductBasket {
     private Product[] productBaskets = new Product[5];
-    public static int counter = 0;
+    public static int counterBascet = 0;
     public static int isSpecialCounter = 0;
 
     public void addProduct(Product product) {
-        if (counter < productBaskets.length-1) {
-            productBaskets[counter] = product;
-            counter = counter + 1;
+        if (counterBascet < productBaskets.length-1) {
+            productBaskets[counterBascet] = product;
+            counterBascet ++;
 
         } else {
             System.out.println("«Невозможно добавить " + product + " , корзина полна ».");
