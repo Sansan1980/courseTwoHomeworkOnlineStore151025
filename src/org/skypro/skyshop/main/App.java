@@ -90,6 +90,8 @@ public class App {
         System.out.println(v);
         b = productBasket.searchByNameProductInBasket("тетрадь");
         System.out.println(b);
+        maximumMatchCalculation();
+
 
     }
 }

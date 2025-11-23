@@ -36,8 +36,28 @@ public class SerchEngine {
         }
     }
 
-    public Searchable searchPrecision(String search) {
+    public Searchable maximumMatchCalculation(String search) {
+        int index = 0;
+        int counter = 0;
+        int max = 0;
+        System.out.println(max);
+        for (Searchable ob : arr) {
+            if (ob != null) {
+                String string = ob.searchTerm();
+                int indexFirstSubString = string.indexOf(search, index);
 
+                while (indexFirstSubString != -1) {
+                    counter++;
+                    index = indexFirstSubString + search.length();
+                    indexFirstSubString = string.indexOf(search, index);
+                }
+                if (counter > max) {
+                    max = counter;
+                }
+            }
+        }
+        counter = 0;
+        return null;
     }
-
 }
+
