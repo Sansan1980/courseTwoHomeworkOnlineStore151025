@@ -1,6 +1,5 @@
 package org.skypro.skyshop.model;
 
-import org.skypro.skyshop.exeption.IllegalProductNameArgumentException;
 import org.skypro.skyshop.exeption.IllegalSimpleProductPriceArgumentException;
 
 public class SimpleProduct extends Product {

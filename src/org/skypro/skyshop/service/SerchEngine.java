@@ -1,5 +1,7 @@
 package org.skypro.skyshop.service;
 
+import org.skypro.skyshop.exeption.BestResultNotFound;
+
 public class SerchEngine {
     private Searchable[] arr;
     private static int counterSearchEngine;
@@ -30,34 +32,42 @@ public class SerchEngine {
         if (counterSearchEngine <= arr.length - 1) {
             arr[counterSearchEngine] = value;
             counterSearchEngine++;
+            System.out.println("SerchEngine.add");
             System.out.println(value);
         } else {
             System.out.println("SerchEngine.add - посиковый массив ,Searchable[] arr, переполнен нельзя дообавить продукт: - " + value);
         }
     }
 
-    public Searchable maximumMatchCalculation(String search) {
-        int index = 0;
-        int counter = 0;
-        int max = 0;
-        System.out.println(max);
-        for (Searchable ob : arr) {
-            if (ob != null) {
-                String string = ob.searchTerm();
-                int indexFirstSubString = string.indexOf(search, index);
-
-                while (indexFirstSubString != -1) {
-                    counter++;
-                    index = indexFirstSubString + search.length();
-                    indexFirstSubString = string.indexOf(search, index);
-                }
-                if (counter > max) {
-                    max = counter;
+    public Searchable maximumMatchCalculation(String search) throws BestResultNotFound {
+        Searchable sear = null;
+        int maxCount = 0;
+        for (Searchable object : arr) {
+            if (object != null) {
+                String nameAndText = object.searchTerm();
+                int nextCountNameAndText = countIndexProductName(nameAndText, search);
+                if (nextCountNameAndText > maxCount) {
+                    maxCount = nextCountNameAndText;
+                    sear = object;
                 }
             }
+            if (sear == null) {
+
+                throw new BestResultNotFound("результат поиска для строки = null");
+            }
+
         }
-        counter = 0;
-        return null;
+        return sear;
+    }
+
+    private int countIndexProductName(String nameAndText, String search) {
+        int count = 0;
+        int index = 0;
+        while ((index = nameAndText.indexOf(search, index)) != -1) {
+            count++;
+            index += search.length();
+        }
+        return count;
     }
 }
 
