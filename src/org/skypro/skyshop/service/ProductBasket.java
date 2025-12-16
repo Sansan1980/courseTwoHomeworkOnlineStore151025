@@ -2,23 +2,23 @@ package org.skypro.skyshop.service;
 
 import org.skypro.skyshop.model.Product;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ProductBasket {
-    private Product[] productBaskets = new Product[5];
+    private List<Product> productBaskets = new LinkedList<>();
     public static int counterBascet = 0;
     public static int isSpecialCounter = 0;
 
     public void addProduct(Product product) {
-        if (counterBascet < productBaskets.length - 1) {
-            productBaskets[counterBascet] = product;
+
+        productBaskets.add(product);
             counterBascet++;
             System.out.println("ProductBasket.addProduct: " + product);
             System.out.println("");
 
-        } else {
-            System.out.println("«Невозможно добавить " + product + " , корзина полна ».");
-        }
     }
 
     public int generalPraisBascet() {
@@ -64,8 +64,8 @@ public class ProductBasket {
     }
 
     public void cleaningBascet() {
-        for (int i = 0; i < productBaskets.length; i++) {
-            productBaskets[i] = null;
+        for (int i = 0; i < productBaskets.size(); i++) {
+            productBaskets.remove(1) ;
             isSpecialCounter = 0;
         }
     }
@@ -73,7 +73,7 @@ public class ProductBasket {
     @Override
     public String toString() {
         return "ProductBasket{" +
-                "productBaskets=" + Arrays.toString(productBaskets) +
+                "productBaskets=" + productBaskets.toString() +
                 '}';
     }
 }

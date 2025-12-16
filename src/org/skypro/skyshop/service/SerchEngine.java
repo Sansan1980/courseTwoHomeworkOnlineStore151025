@@ -51,11 +51,10 @@ public class SerchEngine {
                     sear = object;
                 }
             }
-            if (sear == null) {
 
-                throw new BestResultNotFound("результат поиска для строки = null");
-            }
-
+        }
+        if (sear == null) {
+            throw new BestResultNotFound("результат поиска для строки search ( " + search + " ) = null");
         }
         return sear;
     }
