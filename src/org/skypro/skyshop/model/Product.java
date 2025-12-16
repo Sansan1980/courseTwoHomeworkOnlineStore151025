@@ -1,19 +1,14 @@
 package org.skypro.skyshop.model;
 
+import org.skypro.skyshop.exeption.IllegalProductNameArgumentException;
 import org.skypro.skyshop.service.Searchable;
 
 public abstract class Product implements Searchable {
     private String nameProduct;
 
 
-    public Product(String nameProduct) {
-        try {
-            if (nameProduct.isBlank() || nameProduct == null) {
-                throw new RuntimeException();
-            }
-        } catch (RuntimeException exception) {
-            System.out.println("nameProduct =  " + "'" + nameProduct + "'" + " -Введена пустая строка или содержит null");
-        }
+    public Product(String nameProduct) throws IllegalProductNameArgumentException{
+       chekNameProduct(nameProduct);
         this.nameProduct = nameProduct;
 
     }
@@ -30,6 +25,12 @@ public abstract class Product implements Searchable {
 
 
     public abstract int getPrice();
+
+    public void chekNameProduct(String nameProduct) throws IllegalProductNameArgumentException{
+            if (nameProduct.isBlank() || nameProduct == null) {
+                throw new IllegalProductNameArgumentException("Введенное имя isBlank или null");
+        }
+    }
 
 }
 
