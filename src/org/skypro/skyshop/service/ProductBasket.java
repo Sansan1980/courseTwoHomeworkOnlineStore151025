@@ -10,9 +10,11 @@ public class ProductBasket {
     public static int isSpecialCounter = 0;
 
     public void addProduct(Product product) {
-        if (counterBascet < productBaskets.length-1) {
+        if (counterBascet < productBaskets.length - 1) {
             productBaskets[counterBascet] = product;
-            counterBascet ++;
+            counterBascet++;
+            System.out.println("ProductBasket.addProduct: " + product);
+            System.out.println("");
 
         } else {
             System.out.println("«Невозможно добавить " + product + " , корзина полна ».");
@@ -57,6 +59,7 @@ public class ProductBasket {
                 v = true;
             }
         }
+        System.out.println("поиск по строке-" + nameProduct + ", результат = " + v);
         return v;
     }
 

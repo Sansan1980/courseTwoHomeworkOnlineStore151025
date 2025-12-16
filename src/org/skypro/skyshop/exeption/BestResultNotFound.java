@@ -1,6 +1,15 @@
 package org.skypro.skyshop.exeption;
 
-public class BestResultNotFound extends IllegalArgumentException {
+public class BestResultNotFound extends Exception {
+
+
+    public BestResultNotFound(String message) {
+        super(message);
+    }
+
+    public BestResultNotFound(String message, Throwable cause) {
+        super(message,cause);
+    }
 //4.  Добавление исключений
 //    Мы не хотим, чтобы метод поиска наиболее подходящего объекта возвращал
 //    null
