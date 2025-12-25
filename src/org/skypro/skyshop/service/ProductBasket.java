@@ -10,19 +10,23 @@ public class ProductBasket {
     public static int isSpecialCounter = 0;
     private List<Product> listDeleteProductByName = new LinkedList<>();
 
+    public List<Product> getListDeleteProductByName() {
+        return listDeleteProductByName;
+    }
+
+    public void setListDeleteProductByName(List<Product> listDeleteProductByName) {
+        this.listDeleteProductByName = listDeleteProductByName;
+    }
+
     public void addProduct(Product product) {
 
         productBaskets.add(product);
         counterBascet++;
-//        System.out.println("ProductBasket.addProduct: " + product);
-//        System.out.println("");
-
     }
 
     public List<Product> deleteProductByName(String nameProduct) {
         listDeleteProductByName.clear();
-        System.out.println("Список listDeleteProductByName - Очищен от старого запроса");
-        System.out.println(listDeleteProductByName);
+        System.out.println("Список listDeleteProductByName - Очищен от старого запроса = " + listDeleteProductByName);
         Iterator<Product> iterator = productBaskets.iterator();
         while (iterator.hasNext()) {
             Product element = iterator.next();
@@ -31,6 +35,9 @@ public class ProductBasket {
                 listDeleteProductByName.add(element);
                 iterator.remove();
             }
+        }
+        if (listDeleteProductByName.isEmpty()) {
+            System.out.println("Список пуст");
         }
         return listDeleteProductByName;
     }

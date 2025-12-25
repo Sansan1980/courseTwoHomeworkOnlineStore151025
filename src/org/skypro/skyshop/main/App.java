@@ -8,13 +8,14 @@ import org.skypro.skyshop.service.ProductBasket;
 import org.skypro.skyshop.service.Searchable;
 import org.skypro.skyshop.service.SerchEngine;
 
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class App {
 
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket();
-        SerchEngine serchEngine = new SerchEngine(7);
+        SerchEngine serchEngine = new SerchEngine();
 
         System.out.println("Создаем продукты");
         System.out.println("++++++++++++++");
@@ -22,15 +23,15 @@ public class App {
         Article articleStul = new Article("Описание товара", "стул деревянный");
         Product tetrad = new FixPriceProduct("тетрадь");
         Product lampa = new SimpleProduct("лампа", 969);
-        Product stol = new SimpleProduct("стул", 159);
+        Product stul = new SimpleProduct("стул", 159);
         Product lampa2 = new SimpleProduct("лампа", 23);
-        Product stol2 = new SimpleProduct("стул", 159);
+        Product stul2 = new SimpleProduct("стул", 159);
         Product lampa3 = new SimpleProduct("лампа", 45);
-        Product stol3 = new SimpleProduct("стул", 159);
+        Product stul3 = new SimpleProduct("стул", 159);
         Product lampa4 = new SimpleProduct("лампа", 567);
-        Product stol4 = new SimpleProduct("стул", 159);
+        Product stul4 = new SimpleProduct("стул", 159);
         Product lampa5 = new SimpleProduct("лампа", 3);
-        Product stol5 = new SimpleProduct("стул", 159);
+        Product stul5 = new SimpleProduct("стул", 159);
         Article articleStol = new Article("Описание товара", "стол деревянный");
         Product blocknot = new FixPriceProduct("блокнот");
         Product bra = new SimpleProduct("бра", 100);
@@ -55,7 +56,7 @@ public class App {
             System.out.println("IllegalSimpleProductPriceArgumentException");
         }
         try {
-            Product stul = new DiscountedProduct(("стул"), 6000, 101);
+            stul = new DiscountedProduct(("стул"), 6000, 101);
             productBasket.addProduct(stul);
             serchEngine.add(stul);
         } catch (IllegalArgumentException exception) {
@@ -73,21 +74,20 @@ public class App {
         System.out.println("------------------------------");
 
 
-
         System.out.println("///////");
 
         System.out.println("ложим продукты в корзину");
         productBasket.addProduct(tetrad);
         productBasket.addProduct(lampa);
-        productBasket.addProduct(stol);
+        productBasket.addProduct(stul);
         productBasket.addProduct(lampa2);
-        productBasket.addProduct(stol2);
+        productBasket.addProduct(stul2);
         productBasket.addProduct(lampa3);
-        productBasket.addProduct(stol3);
+        productBasket.addProduct(stul3);
         productBasket.addProduct(lampa4);
-        productBasket.addProduct(stol4);
+        productBasket.addProduct(stul4);
         productBasket.addProduct(lampa5);
-        productBasket.addProduct(stol5);
+        productBasket.addProduct(stul5);
         productBasket.addProduct(blocknot);
         productBasket.addProduct(bra);
         System.out.println("/-/-/-/-");
@@ -98,8 +98,16 @@ public class App {
         serchEngine.add(articleStol);
         serchEngine.add(tetrad);
         serchEngine.add(lampa);
+        serchEngine.add(stul);
+        serchEngine.add(lampa2);
+        serchEngine.add(stul2);
+        serchEngine.add(lampa3);
+        serchEngine.add(stul3);
+        serchEngine.add(lampa4);
+        serchEngine.add(stul4);
+        serchEngine.add(lampa5);
+        serchEngine.add(stul5);
         serchEngine.add(bra);
-        serchEngine.add(stol);
         serchEngine.add(blocknot);
         System.out.println("--------");
 
@@ -130,8 +138,8 @@ public class App {
 
 
         System.out.println();
-        Searchable[] search = serchEngine.search("сани");
-        System.out.println("search = " + Arrays.toString(search));
+        List<Searchable> search = serchEngine.search("лампа");
+        System.out.println("search = " + search);
         try {
             Searchable searchable = serchEngine.maximumMatchCalculation("сани");
             System.out.println("searchable = " + searchable);
@@ -149,21 +157,26 @@ public class App {
 
         productBasket.addProduct(tetrad);
         productBasket.addProduct(lampa);
-        productBasket.addProduct(stol);
+        productBasket.addProduct(stul);
         productBasket.addProduct(lampa2);
-        productBasket.addProduct(stol2);
+        productBasket.addProduct(stul2);
         productBasket.addProduct(lampa3);
-        productBasket.addProduct(stol3);
+        productBasket.addProduct(stul3);
         productBasket.addProduct(lampa4);
-        productBasket.addProduct(stol4);
+        productBasket.addProduct(stul4);
         productBasket.addProduct(lampa5);
-        productBasket.addProduct(stol5);
+        productBasket.addProduct(stul5);
         productBasket.addProduct(blocknot);
         productBasket.addProduct(bra);
         productBasket.printBascet();
-        productBasket.deleteProductByName("лампа");
+        List<Product> deleteProductByName = productBasket.deleteProductByName("SSS");
+        System.out.println(deleteProductByName);
         productBasket.printBascet();
 
+        productBasket.setListDeleteProductByName(new LinkedList<>());
+        List<Product> getListDeleteProductByName = productBasket.getListDeleteProductByName();
+        System.out.println("Список ListDeleteProductByName пуст = " + getListDeleteProductByName);
+        System.out.println(productBasket);
 
     }
 }
