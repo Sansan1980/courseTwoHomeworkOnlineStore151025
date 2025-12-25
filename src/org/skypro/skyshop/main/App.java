@@ -1,7 +1,6 @@
 package org.skypro.skyshop.main;
 
 import org.skypro.skyshop.exeption.BestResultNotFound;
-import org.skypro.skyshop.exeption.IllegalDiscountPriceArgumentException;
 import org.skypro.skyshop.exeption.IllegalProductNameArgumentException;
 import org.skypro.skyshop.exeption.IllegalSimpleProductPriceArgumentException;
 import org.skypro.skyshop.model.*;
@@ -9,7 +8,6 @@ import org.skypro.skyshop.service.ProductBasket;
 import org.skypro.skyshop.service.Searchable;
 import org.skypro.skyshop.service.SerchEngine;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 public class App {
@@ -141,7 +139,8 @@ public class App {
             exception.printStackTrace();
         }
         try {
-            serchEngine.maximumMatchCalculation("sss");
+            Searchable searchable = serchEngine.maximumMatchCalculation("sss");
+            System.out.println("searchable = " + searchable);
         } catch (BestResultNotFound exception) {
             exception.printStackTrace();
         }
@@ -162,7 +161,7 @@ public class App {
         productBasket.addProduct(blocknot);
         productBasket.addProduct(bra);
         productBasket.printBascet();
-        productBasket.deleteProduct("лампа");
+        productBasket.deleteProductByName("лампа");
         productBasket.printBascet();
 
 

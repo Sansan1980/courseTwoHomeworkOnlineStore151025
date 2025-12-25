@@ -8,6 +8,7 @@ public class ProductBasket {
     private List<Product> productBaskets = new LinkedList<>();
     public static int counterBascet = 0;
     public static int isSpecialCounter = 0;
+    private List<Product> listDeleteProductByName = new LinkedList<>();
 
     public void addProduct(Product product) {
 
@@ -18,19 +19,20 @@ public class ProductBasket {
 
     }
 
-    public List<Product> deleteProduct(String nameProduct) {
-        List<Product> list = new LinkedList<>();
+    public List<Product> deleteProductByName(String nameProduct) {
+        listDeleteProductByName.clear();
+        System.out.println("Список listDeleteProductByName - Очищен от старого запроса");
+        System.out.println(listDeleteProductByName);
         Iterator<Product> iterator = productBaskets.iterator();
         while (iterator.hasNext()) {
             Product element = iterator.next();
             if (element.getNameProduct().equals(nameProduct)) {
-                System.out.println("ProductBasket.deleteProduct " + element);
-                ;
-                list.add(element);
+                System.out.println("ProductBasket.deleteProductByName " + element);
+                listDeleteProductByName.add(element);
                 iterator.remove();
             }
         }
-        return list;
+        return listDeleteProductByName;
     }
 
 
@@ -48,13 +50,13 @@ public class ProductBasket {
         if (!productBaskets.isEmpty()) {
             for (Product product : productBaskets) {
                 if (product != null) {
-                    if (product.isSpecial() != false) {
+                    if (product.isSpecial()) {
                         isSpecialCounter++;
                     }
                     System.out.println(product);
                 }
             }
-        } else  {
+        } else {
             System.out.println("«В корзине пусто»");
         }
         System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
