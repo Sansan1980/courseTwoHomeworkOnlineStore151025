@@ -18,21 +18,28 @@ public class App {
         ProductBasket productBasket = new ProductBasket();
         SerchEngine serchEngine = new SerchEngine(7);
 
-
+        System.out.println("Создаем продукты");
+        System.out.println("++++++++++++++");
         Searchable articleHleb = new Article("Описание товара", "хлеб ручной работы");
         Article articleStul = new Article("Описание товара", "стул деревянный");
         Product tetrad = new FixPriceProduct("тетрадь");
         Product lampa = new SimpleProduct("лампа", 969);
         Product stol = new SimpleProduct("стул", 159);
-        Product lampa2 = new SimpleProduct("лампа", 969);
+        Product lampa2 = new SimpleProduct("лампа", 23);
         Product stol2 = new SimpleProduct("стул", 159);
-        Product lampa3 = new SimpleProduct("лампа", 969);
+        Product lampa3 = new SimpleProduct("лампа", 45);
         Product stol3 = new SimpleProduct("стул", 159);
-        Product lampa4 = new SimpleProduct("лампа", 969);
+        Product lampa4 = new SimpleProduct("лампа", 567);
         Product stol4 = new SimpleProduct("стул", 159);
-        Product lampa5 = new SimpleProduct("лампа", 969);
+        Product lampa5 = new SimpleProduct("лампа", 3);
         Product stol5 = new SimpleProduct("стул", 159);
+        Article articleStol = new Article("Описание товара", "стол деревянный");
+        Product blocknot = new FixPriceProduct("блокнот");
+        Product bra = new SimpleProduct("бра", 100);
 
+        System.out.println("+++++++++++++++++++++");
+
+        System.out.println("создаем продукты с ошибкой-----------");
         try {
             Product orang = new SimpleProduct("", 1);
             productBasket.addProduct(orang);
@@ -65,14 +72,13 @@ public class App {
             exception.printStackTrace();
             System.out.println("IllegalDiscountPriceArgumentException");
         }
-        Article articleStol = new Article("Описание товара", "стол деревянный");
-        Product blocknot = new FixPriceProduct("блокнот");
-        Product bra = new SimpleProduct("бра", 100);
+        System.out.println("------------------------------");
+
 
 
         System.out.println("///////");
 
-
+        System.out.println("ложим продукты в корзину");
         productBasket.addProduct(tetrad);
         productBasket.addProduct(lampa);
         productBasket.addProduct(stol);
@@ -88,6 +94,7 @@ public class App {
         productBasket.addProduct(bra);
         System.out.println("/-/-/-/-");
 
+        System.out.println("Заполгнение поисковой корзины");
         serchEngine.add(articleHleb);
         serchEngine.add(articleStul);
         serchEngine.add(articleStol);
@@ -102,21 +109,29 @@ public class App {
         System.out.println("productBasket.printBascet");
         productBasket.printBascet();
 
+        System.out.println();
         Integer generalPraisBascet = productBasket.generalPraisBascet();
         System.out.println("generalPraisBascet = " + generalPraisBascet);
+        System.out.println();
         Boolean searchByNameProductInBasket = productBasket.searchByNameProductInBasket("тетрадь");
         System.out.println("searchByNameProductInBasket = " + searchByNameProductInBasket);
+        System.out.println();
         productBasket.cleaningBascet();
         System.out.println("cleaningBascet");
+        System.out.println();
 
         System.out.println("productBascet=" + productBasket);
+        System.out.println("+++++++++++++____________");
         productBasket.printBascet();
+        System.out.println("+++++++++++++____________");
         generalPraisBascet = productBasket.generalPraisBascet();
         System.out.println("generalPraisBascet = " + generalPraisBascet);
+        System.out.println();
         searchByNameProductInBasket = productBasket.searchByNameProductInBasket("тетрадь");
         System.out.println("searchByNameProductInBasket = " + searchByNameProductInBasket);
 
 
+        System.out.println();
         Searchable[] search = serchEngine.search("сани");
         System.out.println("search = " + Arrays.toString(search));
         try {
@@ -130,5 +145,26 @@ public class App {
         } catch (BestResultNotFound exception) {
             exception.printStackTrace();
         }
+
+        System.out.println("00000000000000000");
+
+        productBasket.addProduct(tetrad);
+        productBasket.addProduct(lampa);
+        productBasket.addProduct(stol);
+        productBasket.addProduct(lampa2);
+        productBasket.addProduct(stol2);
+        productBasket.addProduct(lampa3);
+        productBasket.addProduct(stol3);
+        productBasket.addProduct(lampa4);
+        productBasket.addProduct(stol4);
+        productBasket.addProduct(lampa5);
+        productBasket.addProduct(stol5);
+        productBasket.addProduct(blocknot);
+        productBasket.addProduct(bra);
+        productBasket.printBascet();
+        productBasket.deleteProduct("лампа");
+        productBasket.printBascet();
+
+
     }
 }
