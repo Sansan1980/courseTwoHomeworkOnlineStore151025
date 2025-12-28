@@ -47,7 +47,7 @@ public class SerchEngine {
 
         }
         if (sear == null) {
-            throw new BestResultNotFound("результат поиска для строки search ( " + search + " ) = null");
+            throw new BestResultNotFound("результат поиска, для запроса ( " + search + " ) = отсутствует. ");
         }
         return sear;
     }

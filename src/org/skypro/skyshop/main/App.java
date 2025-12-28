@@ -169,6 +169,9 @@ public class App {
         productBasket.addProduct(blocknot);
         productBasket.addProduct(bra);
         productBasket.printBascet();
+
+        System.out.println();
+        System.out.println("Список  удаленных товаров");
         List<Product> deleteProductByName = productBasket.deleteProductByName("лампа");
         System.out.println(deleteProductByName);
         productBasket.printBascet();

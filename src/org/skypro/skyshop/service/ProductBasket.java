@@ -6,17 +6,15 @@ import java.util.*;
 
 public class ProductBasket {
     private final List<Product> productBaskets;
-    public static int counterBascet = 0;
-    public static int isSpecialCounter = 0;
+    private int counterBascet;
 
     public ProductBasket() {
         this.productBaskets = new LinkedList<>();
     }
 
     public void addProduct(Product product) {
-
         productBaskets.add(product);
-        counterBascet++;
+        counterBascet = counterBascet + 1;
     }
 
     public List<Product> deleteProductByName(String nameProduct) {
@@ -48,43 +46,46 @@ public class ProductBasket {
     }
 
     public void printBascet() {
-        if (!productBaskets.isEmpty()) {
-            for (Product product : productBaskets) {
-                if (product != null) {
-                    System.out.println(product);
-                    isSpecialCounter = (product.isSpecial()) ? isSpecialCounter + 1 : isSpecialCounter;
+        int isSpecialCounter = 0;
+        if (productBaskets.isEmpty()) {
+            System.out.println("«В корзине пусто»");
+            return;
+        }
+        for (Product product : productBaskets) {
+            if (product != null) {
+                System.out.println(product);
+                if (product.isSpecial()) {
+                    isSpecialCounter++;
                 }
             }
-        }else {
-            System.out.println("«В корзине пусто»");
         }
         System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
         System.out.println("Специальных товаров: " + isSpecialCounter);
+
     }
 
 
-public Boolean searchByNameProductInBasket(String nameProduct) {
-    boolean v = false;
-    for (Product product : productBaskets) {
-        if (product != null && product.getNameProduct().equals(nameProduct)) {
-            v = true;
+    public boolean searchByNameProductInBasket(String nameProduct) {
+        boolean searchName = false;
+        for (Product product : productBaskets) {
+            if (product != null && product.getNameProduct().equals(nameProduct)) {
+                searchName = true;
+            }
         }
+        System.out.println("поиск по строке-" + nameProduct + ", результат = " + searchName);
+        return searchName;
     }
-    System.out.println("поиск по строке-" + nameProduct + ", результат = " + v);
-    return v;
-}
 
-public void cleaningBascet() {
-    productBaskets.clear();
-    isSpecialCounter = 0;
-}
+    public void cleaningBascet() {
+        productBaskets.clear();
+    }
 
-@Override
-public String toString() {
-    return "ProductBasket{" +
-            "productBaskets=" + productBaskets.toString() +
-            '}';
-}
+    @Override
+    public String toString() {
+        return "ProductBasket{" +
+                "productBaskets=" + productBaskets +
+                '}';
+    }
 }
 
 
