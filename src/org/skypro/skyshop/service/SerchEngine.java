@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SerchEngine {
-    private List<Searchable> listEngine ;
+    private List<Searchable> listEngine;
 
     public SerchEngine() {
         this.listEngine = new LinkedList<>();
@@ -14,22 +14,22 @@ public class SerchEngine {
 
     public List<Searchable> search(String substring) {
         List<Searchable> searchResult = new LinkedList<>();
+        if (!listEngine.isEmpty()) {
             for (Searchable element : listEngine) {
-                if (element != null) {
-                    String string = element.searchTerm();
-                    if (string.contains(substring)) {
-                        searchResult.add(element);
-                    }
+                if (element != null && element.searchTerm().contains(substring)) {
+                    searchResult.add(element);
                 }
             }
-
+        } else {
+            System.out.println(("Список listEngine - пустой"));
+        }
         return searchResult;
     }
 
     public void add(Searchable value) {
-            listEngine.add(value);
-            System.out.println("SerchEngine.add - " +  value);
-        }
+        listEngine.add(value);
+        System.out.println("SerchEngine.add - " + value);
+    }
 
 
     public Searchable maximumMatchCalculation(String search) throws BestResultNotFound {

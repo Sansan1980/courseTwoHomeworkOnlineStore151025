@@ -169,14 +169,11 @@ public class App {
         productBasket.addProduct(blocknot);
         productBasket.addProduct(bra);
         productBasket.printBascet();
-        List<Product> deleteProductByName = productBasket.deleteProductByName("SSS");
+        List<Product> deleteProductByName = productBasket.deleteProductByName("лампа");
         System.out.println(deleteProductByName);
         productBasket.printBascet();
 
-        productBasket.setListDeleteProductByName(new LinkedList<>());
-        List<Product> getListDeleteProductByName = productBasket.getListDeleteProductByName();
-        System.out.println("Список ListDeleteProductByName пуст = " + getListDeleteProductByName);
-        System.out.println(productBasket);
+
 
     }
 }

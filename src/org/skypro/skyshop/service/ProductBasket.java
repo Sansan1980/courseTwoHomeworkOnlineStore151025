@@ -5,17 +5,12 @@ import org.skypro.skyshop.model.Product;
 import java.util.*;
 
 public class ProductBasket {
-    private List<Product> productBaskets = new LinkedList<>();
+    private final List<Product> productBaskets;
     public static int counterBascet = 0;
     public static int isSpecialCounter = 0;
-    private List<Product> listDeleteProductByName = new LinkedList<>();
 
-    public List<Product> getListDeleteProductByName() {
-        return listDeleteProductByName;
-    }
-
-    public void setListDeleteProductByName(List<Product> listDeleteProductByName) {
-        this.listDeleteProductByName = listDeleteProductByName;
+    public ProductBasket() {
+        this.productBaskets = new LinkedList<>();
     }
 
     public void addProduct(Product product) {
@@ -25,8 +20,7 @@ public class ProductBasket {
     }
 
     public List<Product> deleteProductByName(String nameProduct) {
-        listDeleteProductByName.clear();
-        System.out.println("Список listDeleteProductByName - Очищен от старого запроса = " + listDeleteProductByName);
+        List<Product> listDeleteProductByName = new LinkedList<>();
         Iterator<Product> iterator = productBaskets.iterator();
         while (iterator.hasNext()) {
             Product element = iterator.next();
@@ -57,17 +51,15 @@ public class ProductBasket {
         if (!productBaskets.isEmpty()) {
             for (Product product : productBaskets) {
                 if (product != null) {
-                    if (product.isSpecial()) {
-                        isSpecialCounter++;
-                    }
                     System.out.println(product);
+                    isSpecialCounter = (product.isSpecial()) ? isSpecialCounter + 1 : isSpecialCounter;
+                } else {
+                    System.out.println("«В корзине пусто»");
                 }
             }
-        } else {
-            System.out.println("«В корзине пусто»");
+                System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
+                System.out.println("Специальных товаров: " + isSpecialCounter);
         }
-        System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
-        System.out.println("Специальных товаров: " + isSpecialCounter);
     }
 
     public Boolean searchByNameProductInBasket(String nameProduct) {
@@ -82,10 +74,8 @@ public class ProductBasket {
     }
 
     public void cleaningBascet() {
-        for (int i = 0; i < productBaskets.size(); i++) {
-            productBaskets.clear();
-            isSpecialCounter = 0;
-        }
+        productBaskets.clear();
+        isSpecialCounter = 0;
     }
 
     @Override
