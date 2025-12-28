@@ -53,37 +53,38 @@ public class ProductBasket {
                 if (product != null) {
                     System.out.println(product);
                     isSpecialCounter = (product.isSpecial()) ? isSpecialCounter + 1 : isSpecialCounter;
-                } else {
-                    System.out.println("«В корзине пусто»");
                 }
             }
-                System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
-                System.out.println("Специальных товаров: " + isSpecialCounter);
+        }else {
+            System.out.println("«В корзине пусто»");
+        }
+        System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
+        System.out.println("Специальных товаров: " + isSpecialCounter);
+    }
+
+
+public Boolean searchByNameProductInBasket(String nameProduct) {
+    boolean v = false;
+    for (Product product : productBaskets) {
+        if (product != null && product.getNameProduct().equals(nameProduct)) {
+            v = true;
         }
     }
+    System.out.println("поиск по строке-" + nameProduct + ", результат = " + v);
+    return v;
+}
 
-    public Boolean searchByNameProductInBasket(String nameProduct) {
-        boolean v = false;
-        for (Product product : productBaskets) {
-            if (product != null && product.getNameProduct().equals(nameProduct)) {
-                v = true;
-            }
-        }
-        System.out.println("поиск по строке-" + nameProduct + ", результат = " + v);
-        return v;
-    }
+public void cleaningBascet() {
+    productBaskets.clear();
+    isSpecialCounter = 0;
+}
 
-    public void cleaningBascet() {
-        productBaskets.clear();
-        isSpecialCounter = 0;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductBasket{" +
-                "productBaskets=" + productBaskets.toString() +
-                '}';
-    }
+@Override
+public String toString() {
+    return "ProductBasket{" +
+            "productBaskets=" + productBaskets.toString() +
+            '}';
+}
 }
 
 
