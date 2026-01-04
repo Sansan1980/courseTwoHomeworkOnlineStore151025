@@ -25,29 +25,15 @@ public class ProductBasket {
     }
 
     public List<Product> deleteProductByName(String nameProduct) {
-        List<Product> listDeleteProductByName = new ArrayList<>();
-        if (!productBasketsMap.containsKey(creatingKeyTheBasketMap(nameProduct))) {
+        List<Product> deletedProductByName = new ArrayList<>();
+        String key = creatingKeyTheBasketMap(nameProduct);
+        if (!productBasketsMap.containsKey(key)) {
             System.out.println("По данному запросу - " + nameProduct + ", нет продуктов");
         } else {
-
+           deletedProductByName = productBasketsMap.remove(key);
         }
-
-
-//        Iterator<Product> iterator = productBasketsMap.iterator();
-//        while (iterator.hasNext()) {
-//            Product element = iterator.next();
-//            if (element.getNameProduct().equals(nameProduct)) {
-//                System.out.println("ProductBasket.deleteProductByName " + element);
-//                listDeleteProductByName.add(element);
-//                iterator.remove();
-//            }
-//        }
-//        if (listDeleteProductByName.isEmpty()) {
-//            System.out.println("Список пуст");
-//        }
-//        return listDeleteProductByName;
+        return  deletedProductByName;
     }
-
 
     public int generalPraisBascet() {
         int summ = 0;
@@ -81,13 +67,13 @@ public class ProductBasket {
 
     public boolean searchByNameProductInBasket(String nameProduct) {
         boolean searchName = false;
-        for (Product product : productBasketsMap) {
-            if (product != null && product.getNameProduct().equals(nameProduct)) {
-                searchName = true;
-            }
+        String key = creatingKeyTheBasketMap(nameProduct);
+        if (!productBasketsMap.containsKey(key)) {
+            System.out.println("По данному запросу - " + nameProduct + ", нет продуктов");
+        } else {
+            searchName = true;
         }
-        System.out.println("поиск по строке-" + nameProduct + ", результат = " + searchName);
-        return searchName;
+       return searchName;
     }
 
     public void cleaningBascet() {
