@@ -9,9 +9,12 @@ import java.util.TreeMap;
 
 public class SerchEngine {
     private Map<String, Searchable> mapEngine;
+    private int counter;
+
 
     public SerchEngine() {
-        this.mapEngine = new TreeMap();
+        this.mapEngine = new TreeMap<>();
+
     }
 
     public Map<String, Searchable> search(String substring) {
@@ -19,7 +22,7 @@ public class SerchEngine {
         if (!mapEngine.isEmpty()) {
             for (Searchable element : mapEngine.values()) {
                 if (element != null && element.searchTerm().contains(substring)) {
-                    searchResult.put(createKeySearchEngine(element),element);
+                    searchResult.put(createKeySearchEngine(element), element);
                 }
             }
         } else {
@@ -66,9 +69,19 @@ public class SerchEngine {
     }
 
     public String createKeySearchEngine(Searchable value) {
-        return value.searchTerm();
+       //counter++;
+        String key = value.searchTerm()  /*+ counter*/;
+        return key;
     }
-//    2. Модификация возвращаемого значения в методе поиска
+
+    @Override
+    public String toString() {
+        return "SerchEngine{" +
+                "mapEngine=" + mapEngine +
+                '}';
+    }
+
+    //    2. Модификация возвращаемого значения в методе поиска
 //    В классе поискового движка вам нужно модифицировать метод
 //    поиска таким образом, чтобы он возвращал отсортированную по именам мапу:
 //
