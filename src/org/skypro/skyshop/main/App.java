@@ -143,10 +143,10 @@ public class App {
 
 
         System.out.println();
-        Map<String,Searchable> search = serchEngine.search("и");
+        Map<String,Searchable> search = serchEngine.search("стул");
         System.out.println("search = " + search);
         try {
-            Searchable searchable = serchEngine.maximumMatchCalculation("у");
+            Searchable searchable = serchEngine.maximumMatchCalculation("л");
             System.out.println("searchable = " + searchable);
         } catch (BestResultNotFound exception) {
             exception.printStackTrace();

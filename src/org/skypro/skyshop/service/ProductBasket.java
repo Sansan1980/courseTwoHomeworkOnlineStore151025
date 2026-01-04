@@ -69,10 +69,10 @@ public class ProductBasket {
                         }
                     }
                 }
-                System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
-                System.out.println("Специальных товаров: " + isSpecialCounter);
             }
         }
+        System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
+        System.out.println("Специальных товаров: " + isSpecialCounter);
     }
 
 

@@ -3,6 +3,8 @@ package org.skypro.skyshop.model;
 import org.skypro.skyshop.exeption.IllegalProductNameArgumentException;
 import org.skypro.skyshop.service.Searchable;
 
+import java.util.Objects;
+
 public abstract class Product implements Searchable {
     private String nameProduct;
 
@@ -32,6 +34,18 @@ public abstract class Product implements Searchable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(nameProduct, product.nameProduct);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameProduct);
+    }
 }
 
 

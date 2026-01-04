@@ -2,27 +2,24 @@ package org.skypro.skyshop.service;
 
 import org.skypro.skyshop.exeption.BestResultNotFound;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class SerchEngine {
-    private Map<String, Searchable> mapEngine;
+    private Set<Searchable> setEngine;
     private int counter;
 
 
     public SerchEngine() {
-        this.mapEngine = new TreeMap<>();
+        this.setEngine = new HashSet<>();
 
     }
 
     public Map<String, Searchable> search(String substring) {
         Map<String, Searchable> searchResult = new TreeMap();
-        if (!mapEngine.isEmpty()) {
-            for (Searchable element : mapEngine.values()) {
-                if (element != null && element.searchTerm().contains(substring)) {
-                    searchResult.put(createKeySearchEngine(element), element);
+        if (!setEngine.isEmpty()) {
+            for (Searchable element : setEngine) {
+                if (element != null && element.searchTerm().equals(substring)) {
+                    searchResult.put(substring, element);
                 }
             }
         } else {
@@ -32,16 +29,16 @@ public class SerchEngine {
     }
 
     public void add(Searchable value) {
-        String key = createKeySearchEngine(value);
-        mapEngine.put(key, value);
-        System.out.println("SerchEngine.add - поисковое имя = " + key + " :значение = " + value);
+//        Searchable key = createKeySearchEngine(value);
+        setEngine.add(value);
+        System.out.println("SerchEngine.add - поисковое имя  продукта = " + value.searchTerm());
     }
 
 
     public Searchable maximumMatchCalculation(String search) throws BestResultNotFound {
         Searchable sear = null;
         int maxCount = 0;
-        for (Searchable object : mapEngine.values()) {
+        for (Searchable object : setEngine) {
             if (object != null) {
                 String nameAndText = object.searchTerm();
                 int nextCountNameAndText = countIndexProductName(nameAndText, search);
@@ -68,16 +65,16 @@ public class SerchEngine {
         return count;
     }
 
-    public String createKeySearchEngine(Searchable value) {
-       //counter++;
-        String key = value.searchTerm()  /*+ counter*/;
-        return key;
-    }
+//    public String createKeySearchEngine(Searchable value) {
+//        //counter++;
+//        String key = value.searchTerm()  /*+ counter*/;
+//        return key;
+//    }
 
     @Override
     public String toString() {
         return "SerchEngine{" +
-                "mapEngine=" + mapEngine +
+                "mapEngine=" + setEngine +
                 '}';
     }
 
