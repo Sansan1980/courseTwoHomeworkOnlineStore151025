@@ -10,6 +10,7 @@ import org.skypro.skyshop.service.SerchEngine;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class App {
 
@@ -138,7 +139,7 @@ public class App {
 
 
         System.out.println();
-        List<Searchable> search = serchEngine.search("лампа");
+        Map<String,Searchable> search = serchEngine.search("лампа");
         System.out.println("search = " + search);
         try {
             Searchable searchable = serchEngine.maximumMatchCalculation("сани");

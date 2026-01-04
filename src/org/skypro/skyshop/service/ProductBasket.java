@@ -60,7 +60,7 @@ public class ProductBasket {
             return;
         }
         for (List<Product> productList : productBasketsMap.values()) {
-            if (productList != null) {
+            if (!productList.isEmpty()) {
                 for (Product product : productList) {
                     if (product != null) {
                         System.out.println(product);
