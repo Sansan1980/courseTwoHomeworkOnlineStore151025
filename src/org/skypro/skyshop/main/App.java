@@ -10,6 +10,7 @@ import org.skypro.skyshop.service.SerchEngine;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class App {
 
@@ -90,6 +91,8 @@ public class App {
         productBasket.addProduct(stul5);
         productBasket.addProduct(blocknot);
         productBasket.addProduct(bra);
+
+
         System.out.println("/-/-/-/-");
 
         System.out.println("Заполгнение поисковой корзины");
@@ -110,7 +113,9 @@ public class App {
         serchEngine.add(bra);
         serchEngine.add(blocknot);
         System.out.println("--------");
+        System.out.println("+++++++++++++++++++");
 
+        System.out.println(serchEngine);
 
         System.out.println("productBasket.printBascet");
         productBasket.printBascet();
@@ -138,10 +143,10 @@ public class App {
 
 
         System.out.println();
-        List<Searchable> search = serchEngine.search("лампа");
+        Map<String,Searchable> search = serchEngine.search("и");
         System.out.println("search = " + search);
         try {
-            Searchable searchable = serchEngine.maximumMatchCalculation("сани");
+            Searchable searchable = serchEngine.maximumMatchCalculation("у");
             System.out.println("searchable = " + searchable);
         } catch (BestResultNotFound exception) {
             exception.printStackTrace();

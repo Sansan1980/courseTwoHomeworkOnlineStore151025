@@ -5,41 +5,49 @@ import org.skypro.skyshop.model.Product;
 import java.util.*;
 
 public class ProductBasket {
-    private final List<Product> productBaskets;
-    private int counterBascet;
+    //  private final List<Product> productBaskets;
+    private final Map<String, List<Product>> productBasketsMap;
+    // private int counterBascet;
 
     public ProductBasket() {
-        this.productBaskets = new LinkedList<>();
+        this.productBasketsMap = new HashMap<>();
     }
 
     public void addProduct(Product product) {
-        productBaskets.add(product);
-        counterBascet = counterBascet + 1;
+        String key = creatingKeyTheBasketMap(product.getNameProduct());
+        if (!productBasketsMap.containsKey(key)) {
+            List<Product> productBasketsList = new ArrayList<>();
+            productBasketsList.add(product);
+            productBasketsMap.put(key, productBasketsList);
+        } else {
+            List<Product> productBasketsList = productBasketsMap.get(key);
+            productBasketsList.add(product);
+        }
+
+
+        // counterBascet = counterBascet + 1;
     }
 
     public List<Product> deleteProductByName(String nameProduct) {
-        List<Product> listDeleteProductByName = new LinkedList<>();
-        Iterator<Product> iterator = productBaskets.iterator();
-        while (iterator.hasNext()) {
-            Product element = iterator.next();
-            if (element.getNameProduct().equals(nameProduct)) {
-                System.out.println("ProductBasket.deleteProductByName " + element);
-                listDeleteProductByName.add(element);
-                iterator.remove();
-            }
+        List<Product> deletedProductByName = new ArrayList<>();
+        String key = creatingKeyTheBasketMap(nameProduct);
+        if (!productBasketsMap.containsKey(key)) {
+            System.out.println("По данному запросу - " + nameProduct + ", нет такого списка продуктов");
+        } else {
+            deletedProductByName = productBasketsMap.remove(key);
         }
-        if (listDeleteProductByName.isEmpty()) {
-            System.out.println("Список пуст");
-        }
-        return listDeleteProductByName;
+        return deletedProductByName;
     }
-
 
     public int generalPraisBascet() {
         int summ = 0;
-        for (Product p : productBaskets) {
-            if (p != null) {
-                summ = summ + p.getPrice();
+        for (List<Product> productList : productBasketsMap.values()) {
+            if (productList != null) {
+                for (Product product : productList) {
+                    if (product != null) {
+                        summ = summ + product.getPrice();
+                    }
+                }
             }
         }
         return summ;
@@ -47,46 +55,59 @@ public class ProductBasket {
 
     public void printBascet() {
         int isSpecialCounter = 0;
-        if (productBaskets.isEmpty()) {
+        if (productBasketsMap.isEmpty()) {
             System.out.println("«В корзине пусто»");
             return;
         }
-        for (Product product : productBaskets) {
-            if (product != null) {
-                System.out.println(product);
-                if (product.isSpecial()) {
-                    isSpecialCounter++;
+        for (List<Product> productList : productBasketsMap.values()) {
+            if (!productList.isEmpty()) {
+                for (Product product : productList) {
+                    if (product != null) {
+                        System.out.println(product);
+                        if (product.isSpecial()) {
+                            isSpecialCounter++;
+                        }
+                    }
                 }
+                System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
+                System.out.println("Специальных товаров: " + isSpecialCounter);
             }
         }
-        System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
-        System.out.println("Специальных товаров: " + isSpecialCounter);
-
     }
 
 
-    public boolean searchByNameProductInBasket(String nameProduct) {
-        boolean searchName = false;
-        for (Product product : productBaskets) {
-            if (product != null && product.getNameProduct().equals(nameProduct)) {
-                searchName = true;
+            public boolean searchByNameProductInBasket (String nameProduct){
+                boolean searchName = false;
+                String key = creatingKeyTheBasketMap(nameProduct);
+                if (!productBasketsMap.containsKey(key)) {
+                    System.out.println("По данному запросу - " + nameProduct + ", не такого списка продуктов");
+                } else {
+                    searchName = true;
+                }
+                return searchName;
             }
-        }
-        System.out.println("поиск по строке-" + nameProduct + ", результат = " + searchName);
-        return searchName;
-    }
 
-    public void cleaningBascet() {
-        productBaskets.clear();
-    }
+            public void cleaningBascet () {
+                productBasketsMap.clear();
+            }
 
-    @Override
-    public String toString() {
-        return "ProductBasket{" +
-                "productBaskets=" + productBaskets +
-                '}';
-    }
+            @Override
+            public String toString () {
+                return "ProductBasket{" +
+                        "productBaskets=" + productBasketsMap +
+                        '}';
+            }
+
+
+            public String creatingKeyTheBasketMap (String name){
+                return name;
+            }
 }
-
+//Необходимо изменить структуру хранения данных в корзине на мап
+// когда приходит проодукт в метод аддПродукт ()
+//1.проверяепм что продукт не нулл и его имя не нулл
+// 2.проверяем есть в мапе Лист с таким ключем или нет,
+// если нет то создаем новый лист с этим ключем
+// 3. Ложим этот лист в мапу.
 
 

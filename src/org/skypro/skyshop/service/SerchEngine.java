@@ -4,38 +4,44 @@ import org.skypro.skyshop.exeption.BestResultNotFound;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SerchEngine {
-    private List<Searchable> listEngine;
+    private Map<String, Searchable> mapEngine;
+    private int counter;
+
 
     public SerchEngine() {
-        this.listEngine = new LinkedList<>();
+        this.mapEngine = new TreeMap<>();
+
     }
 
-    public List<Searchable> search(String substring) {
-        List<Searchable> searchResult = new LinkedList<>();
-        if (!listEngine.isEmpty()) {
-            for (Searchable element : listEngine) {
+    public Map<String, Searchable> search(String substring) {
+        Map<String, Searchable> searchResult = new TreeMap();
+        if (!mapEngine.isEmpty()) {
+            for (Searchable element : mapEngine.values()) {
                 if (element != null && element.searchTerm().contains(substring)) {
-                    searchResult.add(element);
+                    searchResult.put(createKeySearchEngine(element), element);
                 }
             }
         } else {
-            System.out.println(("Список listEngine - пустой"));
+            System.out.println(("Список mapEngine - пустой"));
         }
         return searchResult;
     }
 
     public void add(Searchable value) {
-        listEngine.add(value);
-        System.out.println("SerchEngine.add - " + value);
+        String key = createKeySearchEngine(value);
+        mapEngine.put(key, value);
+        System.out.println("SerchEngine.add - поисковое имя = " + key + " :значение = " + value);
     }
 
 
     public Searchable maximumMatchCalculation(String search) throws BestResultNotFound {
         Searchable sear = null;
         int maxCount = 0;
-        for (Searchable object : listEngine) {
+        for (Searchable object : mapEngine.values()) {
             if (object != null) {
                 String nameAndText = object.searchTerm();
                 int nextCountNameAndText = countIndexProductName(nameAndText, search);
@@ -61,5 +67,32 @@ public class SerchEngine {
         }
         return count;
     }
+
+    public String createKeySearchEngine(Searchable value) {
+       //counter++;
+        String key = value.searchTerm()  /*+ counter*/;
+        return key;
+    }
+
+    @Override
+    public String toString() {
+        return "SerchEngine{" +
+                "mapEngine=" + mapEngine +
+                '}';
+    }
+
+    //    2. Модификация возвращаемого значения в методе поиска
+//    В классе поискового движка вам нужно модифицировать метод
+//    поиска таким образом, чтобы он возвращал отсортированную по именам мапу:
+//
+//    с ключом — именем
+//            Searchable
+//-объекта
+//    и значением — самим
+//            Searchable
+//-объектом.
+//    После этого перепишите код в методе
+//    main
+//, который работает с выводом результатов поиска.
 }
 

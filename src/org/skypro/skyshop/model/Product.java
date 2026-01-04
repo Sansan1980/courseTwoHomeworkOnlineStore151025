@@ -20,7 +20,7 @@ public abstract class Product implements Searchable {
     }
 
     public String searchTerm() {
-        return getNameProduct() + " PRODUCT";
+        return getNameProduct() + "PRODUCT";
     }
 
 
