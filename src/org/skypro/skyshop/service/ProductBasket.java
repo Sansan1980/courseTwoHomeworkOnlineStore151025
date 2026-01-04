@@ -19,7 +19,11 @@ public class ProductBasket {
             List<Product> productBasketsList = new ArrayList<>();
             productBasketsList.add(product);
             productBasketsMap.put(key, productBasketsList);
+        } else {
+            List<Product> productBasketsList = productBasketsMap.get(key);
+            productBasketsList.add(product);
         }
+
 
         // counterBascet = counterBascet + 1;
     }
@@ -28,18 +32,22 @@ public class ProductBasket {
         List<Product> deletedProductByName = new ArrayList<>();
         String key = creatingKeyTheBasketMap(nameProduct);
         if (!productBasketsMap.containsKey(key)) {
-            System.out.println("По данному запросу - " + nameProduct + ", нет продуктов");
+            System.out.println("По данному запросу - " + nameProduct + ", нет такого списка продуктов");
         } else {
-           deletedProductByName = productBasketsMap.remove(key);
+            deletedProductByName = productBasketsMap.remove(key);
         }
-        return  deletedProductByName;
+        return deletedProductByName;
     }
 
     public int generalPraisBascet() {
         int summ = 0;
-        for (Product p : productBasketsMap) {
-            if (p != null) {
-                summ = summ + p.getPrice();
+        for (List<Product> productList : productBasketsMap.values()) {
+            if (productList != null) {
+                for (Product product : productList) {
+                    if (product != null) {
+                        summ = summ + product.getPrice();
+                    }
+                }
             }
         }
         return summ;
@@ -51,47 +59,50 @@ public class ProductBasket {
             System.out.println("«В корзине пусто»");
             return;
         }
-        for (Product product : productBasketsMap) {
-            if (product != null) {
-                System.out.println(product);
-                if (product.isSpecial()) {
-                    isSpecialCounter++;
+        for (List<Product> productList : productBasketsMap.values()) {
+            if (productList != null) {
+                for (Product product : productList) {
+                    if (product != null) {
+                        System.out.println(product);
+                        if (product.isSpecial()) {
+                            isSpecialCounter++;
+                        }
+                    }
                 }
+                System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
+                System.out.println("Специальных товаров: " + isSpecialCounter);
             }
         }
-        System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
-        System.out.println("Специальных товаров: " + isSpecialCounter);
-
     }
 
 
-    public boolean searchByNameProductInBasket(String nameProduct) {
-        boolean searchName = false;
-        String key = creatingKeyTheBasketMap(nameProduct);
-        if (!productBasketsMap.containsKey(key)) {
-            System.out.println("По данному запросу - " + nameProduct + ", нет продуктов");
-        } else {
-            searchName = true;
-        }
-       return searchName;
-    }
+            public boolean searchByNameProductInBasket (String nameProduct){
+                boolean searchName = false;
+                String key = creatingKeyTheBasketMap(nameProduct);
+                if (!productBasketsMap.containsKey(key)) {
+                    System.out.println("По данному запросу - " + nameProduct + ", не такого списка продуктов");
+                } else {
+                    searchName = true;
+                }
+                return searchName;
+            }
 
-    public void cleaningBascet() {
-        productBasketsMap.clear();
-    }
+            public void cleaningBascet () {
+                productBasketsMap.clear();
+            }
 
-    @Override
-    public String toString() {
-        return "ProductBasket{" +
-                "productBaskets=" + productBasketsMap +
-                '}';
-    }
+            @Override
+            public String toString () {
+                return "ProductBasket{" +
+                        "productBaskets=" + productBasketsMap +
+                        '}';
+            }
 
 
-    public String creatingKeyTheBasketMap(String name) {
-        String keyTheBasketMap = name;
-        return keyTheBasketMap;
-    }
+            public String creatingKeyTheBasketMap (String name){
+                String keyTheBasketMap = name;
+                return keyTheBasketMap;
+            }
 }
 //Необходимо изменить структуру хранения данных в корзине на мап
 // когда приходит проодукт в метод аддПродукт ()
