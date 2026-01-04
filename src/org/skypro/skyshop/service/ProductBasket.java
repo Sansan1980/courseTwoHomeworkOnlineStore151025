@@ -100,8 +100,7 @@ public class ProductBasket {
 
 
             public String creatingKeyTheBasketMap (String name){
-                String keyTheBasketMap = name;
-                return keyTheBasketMap;
+                return name;
             }
 }
 //Необходимо изменить структуру хранения данных в корзине на мап
