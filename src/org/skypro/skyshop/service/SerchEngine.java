@@ -6,7 +6,6 @@ import java.util.*;
 
 public class SerchEngine {
     private Set<Searchable> setEngine;
-    private int counter;
 
 
     public SerchEngine() {
@@ -14,22 +13,31 @@ public class SerchEngine {
 
     }
 
-    public Map<String, Searchable> search(String substring) {
-        Map<String, Searchable> searchResult = new TreeMap();
+    public TreeSet<Searchable> search(String substring) {
+        TreeSet<Searchable> searchResult = new TreeSet<>(new Comparator<Searchable>() {
+            @Override
+            public int compare(Searchable o1, Searchable o2) {
+                int lengthCompare = Integer.valueOf(o2.searchTerm().length()) - Integer.valueOf(o1.searchTerm().length());
+                if (lengthCompare != 0) {
+                    return lengthCompare;
+                }
+                return o1.searchTerm().compareTo(o2.searchTerm());
+            }
+        });
+
         if (!setEngine.isEmpty()) {
             for (Searchable element : setEngine) {
-                if (element != null && element.searchTerm().equals(substring)) {
-                    searchResult.put(substring, element);
+                if (element != null && element.searchTerm().contains(substring)) {
+                    searchResult.add(element);
                 }
             }
         } else {
-            System.out.println(("Список mapEngine - пустой"));
+            System.out.println(("Список setEngine - пустой"));
         }
         return searchResult;
     }
 
     public void add(Searchable value) {
-//        Searchable key = createKeySearchEngine(value);
         setEngine.add(value);
         System.out.println("SerchEngine.add - поисковое имя  продукта = " + value.searchTerm());
     }
@@ -65,31 +73,14 @@ public class SerchEngine {
         return count;
     }
 
-//    public String createKeySearchEngine(Searchable value) {
-//        //counter++;
-//        String key = value.searchTerm()  /*+ counter*/;
-//        return key;
-//    }
 
     @Override
     public String toString() {
         return "SerchEngine{" +
-                "mapEngine=" + setEngine +
+                "setEngine=" + setEngine +
                 '}';
     }
 
-    //    2. Модификация возвращаемого значения в методе поиска
-//    В классе поискового движка вам нужно модифицировать метод
-//    поиска таким образом, чтобы он возвращал отсортированную по именам мапу:
-//
-//    с ключом — именем
-//            Searchable
-//-объекта
-//    и значением — самим
-//            Searchable
-//-объектом.
-//    После этого перепишите код в методе
-//    main
-//, который работает с выводом результатов поиска.
+
 }
 

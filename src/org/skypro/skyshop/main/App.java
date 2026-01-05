@@ -11,6 +11,7 @@ import org.skypro.skyshop.service.SerchEngine;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class App {
 
@@ -143,7 +144,7 @@ public class App {
 
 
         System.out.println();
-        Map<String,Searchable> search = serchEngine.search("стул");
+        Set<Searchable> search = serchEngine.search("б");
         System.out.println("search = " + search);
         try {
             Searchable searchable = serchEngine.maximumMatchCalculation("л");
