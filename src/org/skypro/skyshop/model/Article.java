@@ -25,7 +25,7 @@ public class Article implements Searchable {
 
     @Override
     public String searchTerm() {
-        return /*getNameArticle()+*/getTextArticle();
+        return getTextArticle();
     }
 
     @Override
@@ -34,14 +34,14 @@ public class Article implements Searchable {
     }
 
     @Override
-    public String getStringRepresentation() {// почему-то ошибка когда default
+    public String getStringRepresentation() {
         return "Имя объекта - " + getNameArticle() +
-                ", Тип объекта - " + returnsNameTipContent();
+                "Тип объекта - " + returnsNameTipContent();
     }
 
     @Override
     public String toString() {
-        return //"Название статьи - " + getNameArticle() +
+        return "Название статьи - " + getNameArticle() +
                 ", Текст статьи - " + getTextArticle();
     }
 

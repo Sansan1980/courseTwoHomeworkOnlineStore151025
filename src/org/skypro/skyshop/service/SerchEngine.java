@@ -6,6 +6,16 @@ import java.util.*;
 
 public class SerchEngine {
     private Set<Searchable> setEngine;
+    Set<Searchable> searchResult = new TreeSet<>(new Comparator<Searchable>() {
+        @Override
+        public int compare(Searchable o1, Searchable o2) {
+            int lengthCompare = Integer.valueOf(o2.searchTerm().length()) - Integer.valueOf(o1.searchTerm().length());
+            if (lengthCompare != 0) {
+                return lengthCompare;
+            }
+            return o1.searchTerm().compareTo(o2.searchTerm());
+        }
+    });
 
 
     public SerchEngine() {
@@ -13,17 +23,8 @@ public class SerchEngine {
 
     }
 
-    public TreeSet<Searchable> search(String substring) {
-        TreeSet<Searchable> searchResult = new TreeSet<>(new Comparator<Searchable>() {
-            @Override
-            public int compare(Searchable o1, Searchable o2) {
-                int lengthCompare = Integer.valueOf(o2.searchTerm().length()) - Integer.valueOf(o1.searchTerm().length());
-                if (lengthCompare != 0) {
-                    return lengthCompare;
-                }
-                return o1.searchTerm().compareTo(o2.searchTerm());
-            }
-        });
+
+    public Set<Searchable> search(String substring) {
 
         if (!setEngine.isEmpty()) {
             for (Searchable element : setEngine) {
@@ -46,13 +47,13 @@ public class SerchEngine {
     public Searchable maximumMatchCalculation(String search) throws BestResultNotFound {
         Searchable sear = null;
         int maxCount = 0;
-        for (Searchable object : setEngine) {
-            if (object != null) {
-                String nameAndText = object.searchTerm();
+        for (Searchable searchable : setEngine) {
+            if (searchable != null) {
+                String nameAndText = searchable.searchTerm();
                 int nextCountNameAndText = countIndexProductName(nameAndText, search);
                 if (nextCountNameAndText > maxCount) {
                     maxCount = nextCountNameAndText;
-                    sear = object;
+                    sear = searchable;
                 }
             }
 

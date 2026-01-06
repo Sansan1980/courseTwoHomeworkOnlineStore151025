@@ -5,9 +5,7 @@ import org.skypro.skyshop.model.Product;
 import java.util.*;
 
 public class ProductBasket {
-    //  private final List<Product> productBaskets;
     private final Map<String, List<Product>> productBasketsMap;
-    // private int counterBascet;
 
     public ProductBasket() {
         this.productBasketsMap = new HashMap<>();
@@ -25,7 +23,6 @@ public class ProductBasket {
         }
 
 
-        // counterBascet = counterBascet + 1;
     }
 
     public List<Product> deleteProductByName(String nameProduct) {
@@ -103,11 +100,4 @@ public class ProductBasket {
                 return name;
             }
 }
-//Необходимо изменить структуру хранения данных в корзине на мап
-// когда приходит проодукт в метод аддПродукт ()
-//1.проверяепм что продукт не нулл и его имя не нулл
-// 2.проверяем есть в мапе Лист с таким ключем или нет,
-// если нет то создаем новый лист с этим ключем
-// 3. Ложим этот лист в мапу.
-
 
