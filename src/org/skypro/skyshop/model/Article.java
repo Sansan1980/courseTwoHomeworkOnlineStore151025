@@ -2,6 +2,8 @@ package org.skypro.skyshop.model;
 
 import org.skypro.skyshop.service.Searchable;
 
+import java.util.Objects;
+
 public class Article implements Searchable {
     private String nameArticle;
 
@@ -23,7 +25,7 @@ public class Article implements Searchable {
 
     @Override
     public String searchTerm() {
-        return getNameArticle()+getTextArticle();
+        return getTextArticle();
     }
 
     @Override
@@ -32,9 +34,9 @@ public class Article implements Searchable {
     }
 
     @Override
-    public String getStringRepresentation() {// почему-то ошибка когда default
+    public String getStringRepresentation() {
         return "Имя объекта - " + getNameArticle() +
-                ", Тип объекта - " + returnsNameTipContent();
+                "Тип объекта - " + returnsNameTipContent();
     }
 
     @Override
@@ -43,6 +45,17 @@ public class Article implements Searchable {
                 ", Текст статьи - " + getTextArticle();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Article article = (Article) o;
+        return Objects.equals(nameArticle, article.nameArticle);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameArticle);
+    }
 }
 
