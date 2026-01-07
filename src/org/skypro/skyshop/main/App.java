@@ -8,10 +8,7 @@ import org.skypro.skyshop.service.ProductBasket;
 import org.skypro.skyshop.service.Searchable;
 import org.skypro.skyshop.service.SerchEngine;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class App {
 
@@ -144,7 +141,8 @@ public class App {
 
 
         System.out.println();
-        Set<Searchable> search = serchEngine.search("б");
+       // Set<Searchable> search = serchEngine.search("б");
+        TreeSet<Searchable> search = serchEngine.search("л");
         System.out.println("search = " + search);
         try {
             Searchable searchable = serchEngine.maximumMatchCalculation("л");

@@ -3,20 +3,10 @@ package org.skypro.skyshop.service;
 import org.skypro.skyshop.exeption.BestResultNotFound;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SerchEngine {
     private Set<Searchable> setEngine;
-    Set<Searchable> searchResult = new TreeSet<>(new Comparator<Searchable>() {
-        @Override
-        public int compare(Searchable o1, Searchable o2) {
-            int lengthCompare = Integer.valueOf(o2.searchTerm().length()) - Integer.valueOf(o1.searchTerm().length());
-            if (lengthCompare != 0) {
-                return lengthCompare;
-            }
-            return o1.searchTerm().compareTo(o2.searchTerm());
-        }
-    });
-
 
     public SerchEngine() {
         this.setEngine = new HashSet<>();
@@ -24,18 +14,11 @@ public class SerchEngine {
     }
 
 
-    public Set<Searchable> search(String substring) {
-
-        if (!setEngine.isEmpty()) {
-            for (Searchable element : setEngine) {
-                if (element != null && element.searchTerm().contains(substring)) {
-                    searchResult.add(element);
-                }
-            }
-        } else {
-            System.out.println(("Список setEngine - пустой"));
-        }
-        return searchResult;
+    public TreeSet<Searchable> search(String substring) {
+        TreeSet<Searchable> sortedSetEngine = setEngine.stream()
+                .filter(((searchable) -> searchable.searchTerm().contains(substring)))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Searchable::searchTerm))));
+        return sortedSetEngine;
     }
 
     public void add(Searchable value) {

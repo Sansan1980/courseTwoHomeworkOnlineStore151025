@@ -1,8 +1,10 @@
 package org.skypro.skyshop.service;
 
 import org.skypro.skyshop.model.Product;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductBasket {
     private final Map<String, List<Product>> productBasketsMap;
@@ -38,66 +40,61 @@ public class ProductBasket {
 
     public int generalPraisBascet() {
         int summ = 0;
-        for (List<Product> productList : productBasketsMap.values()) {
-            if (productList != null) {
-                for (Product product : productList) {
-                    if (product != null) {
-                        summ = summ + product.getPrice();
-                    }
-                }
-            }
-        }
-        return summ;
+        int productList = productBasketsMap.values().stream()
+                .flatMap(Collection::stream)
+                .mapToInt(product -> product.getPrice())
+                .sum();
+
+        return productList;
     }
 
     public void printBascet() {
-        int isSpecialCounter = 0;
+        //int isSpecialCounter = 0;
         if (productBasketsMap.isEmpty()) {
             System.out.println("«В корзине пусто»");
             return;
         }
-        for (List<Product> productList : productBasketsMap.values()) {
-            if (!productList.isEmpty()) {
-                for (Product product : productList) {
-                    if (product != null) {
-                        System.out.println(product);
-                        if (product.isSpecial()) {
-                            isSpecialCounter++;
-                        }
-                    }
-                }
-            }
-        }
+
+
+        productBasketsMap.values().stream().flatMap(Collection::stream)
+                .forEach(System.out::println);
         System.out.println("Итого: <общая стоимость корзины = " + generalPraisBascet() + " >");
+        SpecialCount();
+    }
+
+    private void SpecialCount() {
+    long isSpecialCounter = productBasketsMap.values().stream().flatMap(Collection::stream)
+                .filter(Product::isSpecial)
+                .count();
         System.out.println("Специальных товаров: " + isSpecialCounter);
     }
 
 
-            public boolean searchByNameProductInBasket (String nameProduct){
-                boolean searchName = false;
-                String key = creatingKeyTheBasketMap(nameProduct);
-                if (!productBasketsMap.containsKey(key)) {
-                    System.out.println("По данному запросу - " + nameProduct + ", не такого списка продуктов");
-                } else {
-                    searchName = true;
-                }
-                return searchName;
-            }
+    public boolean searchByNameProductInBasket(String nameProduct) {
+        boolean searchName = false;
+        String key = creatingKeyTheBasketMap(nameProduct);
+        if (!productBasketsMap.containsKey(key)) {
+            System.out.println("По данному запросу - " + nameProduct + ", не такого списка продуктов");
+        } else {
+            searchName = true;
+        }
+        return searchName;
+    }
 
-            public void cleaningBascet () {
-                productBasketsMap.clear();
-            }
+    public void cleaningBascet() {
+        productBasketsMap.clear();
+    }
 
-            @Override
-            public String toString () {
-                return "ProductBasket{" +
-                        "productBaskets=" + productBasketsMap +
-                        '}';
-            }
+    @Override
+    public String toString() {
+        return "ProductBasket{" +
+                "productBaskets=" + productBasketsMap +
+                '}';
+    }
 
 
-            public String creatingKeyTheBasketMap (String name){
-                return name;
-            }
+    public String creatingKeyTheBasketMap(String name) {
+        return name;
+    }
 }
 
